@@ -18,3 +18,7 @@ OfertaBundle:
 #_internal:
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #   prefix:   /_internal
+
+pagina_ayuda:
+    pattern: /ayuda
+    defaults: { _controller: OfertaBundle:Default:ayuda }
