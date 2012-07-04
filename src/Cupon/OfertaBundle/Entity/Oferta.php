@@ -24,91 +24,87 @@ class Oferta
     /**
      * @var string $nombre
      *
-     * @ORM\Column(name="nombre", type="string", length=255)
+     * @ORM\Column(name="nombre", type="string", length=255,nullable=true)
      */
     private $nombre;
 
     /**
      * @var string $slug
      *
-     * @ORM\Column(name="slug", type="string", length=255)
+     * @ORM\Column(name="slug", type="string", length=255,nullable=true)
      */
     private $slug;
 
     /**
      * @var text $descripcion
      *
-     * @ORM\Column(name="descripcion", type="text")
+     * @ORM\Column(name="descripcion", type="text",nullable=true)
      */
     private $descripcion;
 
     /**
      * @var string $foto
      *
-     * @ORM\Column(name="foto", type="string", length=255)
+     * @ORM\Column(name="foto", type="string", length=255,nullable=true)
      */
     private $foto;
 
     /**
      * @var decimal $precio
      *
-     * @ORM\Column(name="precio", type="decimal")
+     * @ORM\Column(name="precio", type="decimal",nullable=true)
      */
     private $precio;
 
     /**
      * @var decimal $descuento
      *
-     * @ORM\Column(name="descuento", type="decimal")
+     * @ORM\Column(name="descuento", type="decimal",nullable=true)
      */
-    private $descuento;
+    private $descuento = 0;
 
     /**
      * @var datetime $fecha_publicacion
      *
-     * @ORM\Column(name="fecha_publicacion", type="datetime")
+     * @ORM\Column(name="fecha_publicacion", type="datetime",nullable=true)
      */
     private $fecha_publicacion;
 
     /**
      * @var datetime $fecha_expiracion
      *
-     * @ORM\Column(name="fecha_expiracion", type="datetime")
+     * @ORM\Column(name="fecha_expiracion", type="datetime",nullable=true)
      */
     private $fecha_expiracion;
 
     /**
      * @var integer $compras
      *
-     * @ORM\Column(name="compras", type="integer")
+     * @ORM\Column(name="compras", type="integer",nullable=true)
      */
     private $compras;
 
     /**
      * @var integer $umbral
      *
-     * @ORM\Column(name="umbral", type="integer")
+     * @ORM\Column(name="umbral", type="integer",nullable=true)
      */
     private $umbral;
 
     /**
      * @var boolean $revisada
      *
-     * @ORM\Column(name="revisada", type="boolean")
+     * @ORM\Column(name="revisada", type="boolean",nullable=true)
      */
     private $revisada;
 
-    /**
-     * @var string $ciudad
-     *
-     * @ORM\Column(name="ciudad", type="string", length=255)
-     */
+   /** @ORM\ManyToOne(targetEntity="Cupon\CiudadBundle\Entity\Ciudad") */
     private $ciudad;
 
     /**
      * @var string $tienda
      *
-     * @ORM\Column(name="tienda", type="string", length=255)
+     * @ORM\Column(name="tienda", type="string", length=255,nullable=true)
      */
     private $tienda;
 
@@ -343,12 +339,12 @@ class Oferta
         return $this->revisada;
     }
 
-    /**
+     /**
      * Set ciudad
      *
-     * @param string $ciudad
+     * @param Cupon\CiudadBundle\Entity\Ciudad $ciudad
      */
-    public function setCiudad($ciudad)
+    public function setCiudad(\Cupon\CiudadBundle\Entity\Ciudad $ciudad)
     {
         $this->ciudad = $ciudad;
     }
@@ -356,7 +352,7 @@ class Oferta
     /**
      * Get ciudad
      *
-     * @return string 
+     * @return Cupon\CiudadBundle\Entity\Ciudad 
      */
     public function getCiudad()
     {

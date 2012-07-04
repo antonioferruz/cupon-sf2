@@ -4,6 +4,7 @@
 namespace Cupon\TiendaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Cupon\OfertaBundle\Util\Util;
 
 /** @ORM\Entity */
 class Tienda
@@ -21,20 +22,20 @@ class Tienda
     /** @ORM\Column(type="string", length=100) */
     protected $slug;
     
-    /** @ORM\Column(type="string", length=10) */
+    /** @ORM\Column(type="string", length=10,nullable=true) */
     protected $login;
     
-    /** @ORM\Column(type="string", length=255) */
+    /** @ORM\Column(type="string", length=255,nullable=true) */
     protected $password;
     
-    /** @ORM\Column(type="string", length=255) */
+    /** @ORM\Column(type="string", length=255,nullable=true) */
     protected $salt;
     
-    /** @ORM\Column(type="text") */
+    /** @ORM\Column(type="text",nullable=true) */
     protected $descripcion;
     
-    /** @ORM\Column(type="text") */
-    protected $direccion;
+    /** @ORM\Column(type="text",nullable=true) */
+    protected $direccion = "";
     
     /** @ORM\ManyToOne(targetEntity="Cupon\CiudadBundle\Entity\Ciudad") */
     protected $ciudad;
@@ -58,6 +59,7 @@ class Tienda
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+        $this->slug = Util::getSlug($nombre);
     }
 
     /**

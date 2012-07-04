@@ -10,18 +10,37 @@ class ciudades implements FixtureInterface
     public function load(ObjectManager $manager)
     {
         $ciudades = array(
-            array('nombre' => 'Madrid', 'slug' => 'madrid'),
-            array('nombre' => 'Barcelona', 'slug' => 'barcelona'),
-            array('nombre' => 'Santa Cruz de Tenerife', 'slug' => 'santa-cruz-tenerife'),
-            array('nombre' => 'Cadiz', 'slug' => 'cadiz'),
+            'Madrid',
+            'Barcelona',
+            'Valencia',
+            'Sevilla',
+            'Zaragoza',
+            'Málaga',
+            'Murcia',
+            'Palma de Mallorca',
+            'Las Palmas de Gran Canaria',
+            'Bilbao',
+            'Alicante',
+            'Córdoba',
+            'Valladolid',
+            'Vigo',
+            'Gijón',
+            'Hospitalet de Llobregat',
+            'La Coruña',
+            'Granada',
+            'Vitoria-Gasteiz',
+            'Elche',
+            'Oviedo',
+            'Santa Cruz de Tenerife',
+            'Badalona',
+            'Cartagena',
+            'Tarrasa',
         );
 
         foreach ($ciudades as $ciudad) {
             $entidad = new Ciudad();
             
-            $entidad->setNombre($ciudad['nombre']);
-            $entidad->setSlug($ciudad['slug']);
-            
+            $entidad->setNombre($ciudad);
             $manager->persist($entidad);
         }
         
