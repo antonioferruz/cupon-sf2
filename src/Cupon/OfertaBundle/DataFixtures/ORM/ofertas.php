@@ -6,15 +6,15 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Cupon\OfertaBundle\Entity\Oferta;
 use Cupon\CiudadBundle\Entity\Ciudad;
+use Cupon\TiendaBundle\Entity\Tienda;
 use Cupon\OfertaBundle\Util\Util;
 
 class ofertas implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        
-        
-        for ($i = 0; $i < 400; $i++) {
+
+        for ($i = 0; $i < 100; $i++) {
             $entidad = new Oferta();
             $entidad->setNombre('Oferta '.$i);
             $entidad->setSlug(Util::getSlug($entidad->getNombre()));
@@ -25,6 +25,10 @@ class ofertas implements FixtureInterface
             // random de asignacion de ciudad
             $ciudad = $manager->getRepository('CiudadBundle:Ciudad')->find(rand(1,25));
             $entidad->setCiudad($ciudad);
+            
+            // random de asignacion de tienda
+            $tienda = $manager->getRepository('TiendaBundle:Tienda')->find(rand(1,10));
+            $entidad->setTienda($tienda);
 
             $manager->persist($entidad);
         }
