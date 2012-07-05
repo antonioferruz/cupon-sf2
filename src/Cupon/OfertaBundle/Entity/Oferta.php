@@ -66,7 +66,7 @@ class Oferta
     /**
      * @var datetime $fecha_publicacion
      *
-     * @ORM\Column(name="fecha_publicacion", type="datetime",nullable=true)
+     * @ORM\Column(name="fecha_publicacion", type="date",nullable=true)
      */
     private $fecha_publicacion;
 

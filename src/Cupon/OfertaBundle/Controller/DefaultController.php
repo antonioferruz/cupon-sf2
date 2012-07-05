@@ -15,6 +15,7 @@ class DefaultController extends Controller
                 'fecha_publicacion' => new \DateTime('today')
         ));
         
+              
         return $this->render(
             'OfertaBundle:Default:portada.html.twig',
             array('oferta' => $oferta)

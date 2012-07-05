@@ -20,11 +20,18 @@ class ofertas implements FixtureInterface
             $entidad->setSlug(Util::getSlug($entidad->getNombre()));
             $entidad->setDescripcion("Descripcion de la oferta " . $i);
             $entidad->setPrecio(rand(1, 100));
-            $entidad->setFechaPublicacion(new \DateTime());
+            // fecha de publicacion 1 al dia
+            $interval = new \DateInterval("P".$i."D");
+            $date1 = new \DateTime();
+            $date1->add($interval);
+            //echo $date1->format('Y-m-d');
+            $entidad->setFechaPublicacion($date1);
 
             // random de asignacion de ciudad
-            $ciudad = $manager->getRepository('CiudadBundle:Ciudad')->find(rand(1,25));
+            //$ciudad = $manager->getRepository('CiudadBundle:Ciudad')->find(rand(1,25));
+            $ciudad = $manager->getRepository('CiudadBundle:Ciudad')->find(rand(1,1));
             $entidad->setCiudad($ciudad);
+            
             
             // random de asignacion de tienda
             $tienda = $manager->getRepository('TiendaBundle:Tienda')->find(rand(1,10));
