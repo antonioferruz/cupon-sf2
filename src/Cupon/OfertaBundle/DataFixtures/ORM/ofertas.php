@@ -19,6 +19,7 @@ class ofertas implements FixtureInterface
             $entidad->setNombre('Oferta '.$i);
             $entidad->setSlug(Util::getSlug($entidad->getNombre()));
             $entidad->setDescripcion("Descripcion de la oferta " . $i);
+            $entidad->setFoto("producto_demo.jpg");
             $entidad->setPrecio(rand(1, 100));
             // fecha de publicacion 1 al dia
             $interval = new \DateInterval("P".$i."D");
