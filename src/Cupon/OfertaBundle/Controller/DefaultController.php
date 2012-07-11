@@ -3,19 +3,33 @@ namespace Cupon\OfertaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class DefaultController extends Controller
 {
     
-    public function portadaAction()
+    public function portadaAction($ciudad)
     {
-        $em = $this->getDoctrine()->getEntityManager();
-        $oferta = $em->getRepository('OfertaBundle:Oferta')->findOneBy(array(
-                'ciudad'     => $this->container->getParameter('cupon.ciudad_por_defecto'),
-                'fecha_publicacion' => new \DateTime('today')
-        ));
         
-              
+        if(null==$ciudad){
+            $ciudad = $this->container
+                                        ->getParameter('cupon.ciudad_por_defecto');
+            return new RedirectResponse(
+                    $this->generateUrl('portada', array('ciudad'=>$ciudad))
+                    );
+        }
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $oferta = $em->getRepository('OfertaBundle:Oferta')->findOfertadelDia($ciudad);
+
+        //control de errores
+        if (!$oferta) {
+            throw new HttpException(200,'No se ha encontrado la oferta del día en la ciudad seleccionada');
+            //throw $this->createNotFoundException('No se ha encontrado la oferta del día en la ciudad seleccionada');
+        }
+
         return $this->render(
             'OfertaBundle:Default:portada.html.twig',
             array('oferta' => $oferta)
