@@ -1,6 +1,8 @@
 imports:
     - { resource: parameters.ini }
     - { resource: security.yml }
+    - { resource: services.yml }
+
 
 framework:
     #esi:             ~
@@ -11,7 +13,7 @@ framework:
     form:            true
     csrf_protection: true
     validation:      { enable_annotations: true }
-    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
+    templating:      { engines: ['twig'] , assets_version: 1.3}  #assets_version
     session:
         default_locale: %locale%
         auto_start:     true
@@ -20,6 +22,9 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    globals:
+      ciudad_por_defecto: %cupon.ciudad_por_defecto%
+
 
 # Assetic Configuration
 assetic:
@@ -59,7 +64,10 @@ jms_security_extra:
     secure_controllers:  true
     secure_all_services: false
 
+
 # Parámetros globales del contenedor de dependencias
 parameters:
-    cupon.ciudad_por_defecto : '1'
+    cupon.ciudad_por_defecto : 'madrid'
   
+
+
