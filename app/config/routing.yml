@@ -39,6 +39,16 @@ ciudad_cambiar:
 oferta:
   pattern: /{ciudad}/ofertas/{slug}/
   defaults: { _controller: OfertaBundle:Default:oferta }
+  
+ciudad_recientes:
+  pattern: /{ciudad}/recientes
+  defaults: { _controller: CiudadBundle:Default:recientes }
+  
+tienda_portada:
+  pattern: /{ciudad}/tiendas/{tienda}
+  defaults: { _controller: TiendaBundle:Default:portada }
+
+
 
 
    
