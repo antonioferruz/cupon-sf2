@@ -26,8 +26,8 @@ class DefaultController extends Controller
 
         //control de errores
         if (!$oferta) {
-            throw new HttpException(200,'No se ha encontrado la oferta del día en la ciudad seleccionada');
-            //throw $this->createNotFoundException('No se ha encontrado la oferta del día en la ciudad seleccionada');
+            //throw new HttpException(200,'No se ha encontrado la oferta del día en la ciudad seleccionada');
+            throw $this->createNotFoundException('No se ha encontrado la oferta del día en la ciudad seleccionada');
         }
 
         return $this->render(
